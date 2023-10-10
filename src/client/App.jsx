@@ -1,34 +1,35 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import "./App.css";
+import React from "react"
+import LandingPage from './landing_page/landing_page.jsx'
+import NavBar from './nav_bar/nav_bar.jsx'
+import DisplayNavBar from './nav_bar/display_nav_bar.jsx'
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom' //Router provides a roter for use in web broswers and provides clean URL paths.
+import MusicTourBuilder from './music_tour_builder/music_tour_builder.jsx'
+import MusicTrendsInformation from './music_trends_information/music_trends_information.jsx'
+
+//JSX converts HTML into React elements
+//Files grouped by feature
 
 function App() {
-  const [count, setCount] = useState(0);
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR!
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  );
+    <>
+      <Router> 
+          <DisplayNavBar>
+            <NavBar /> 
+          </DisplayNavBar> 
+          <Routes> 
+            <Route path = '/' element = {<LandingPage/>} /> 
+            <Route path = '/music_tour_builder' element = {<MusicTourBuilder/>} /> 
+            <Route path = '/music_trends_information' element = {<MusicTrendsInformation/>} /> 
+          </Routes> 
+      </Router>
+      <footer>
+        <div>
+          Fantasy Music Tour Builder created by Matthew McAlarney, Sean Arackal, Adish Jain, Daniel Onyema, and Sultan Adedeji
+        </div>
+      </footer>
+  </>
+  )
 }
 
-export default App;
+export default App
